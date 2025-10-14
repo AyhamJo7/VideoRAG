@@ -13,6 +13,8 @@ from tqdm import tqdm
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
+from loguru import logger
+
 from videorag.asr.whisper_transcriber import WhisperTranscriber, save_transcript
 from videorag.config.settings import settings
 from videorag.io.chunking import chunk_video, save_chunk_metadata
@@ -21,7 +23,6 @@ from videorag.utils.logging import setup_logging
 from videorag.utils.paths import get_embedding_path, get_transcript_path, get_video_id
 from videorag.vision.clip_embedder import CLIPEmbedder
 from videorag.vision.keyframes import extract_keyframes_uniform, save_keyframe_metadata
-from loguru import logger
 
 
 def process_single_video(video_path: Path, skip_existing: bool = True):
@@ -53,7 +54,9 @@ def process_single_video(video_path: Path, skip_existing: bool = True):
     # Step 3: Transcribe chunks
     transcriber = WhisperTranscriber()
     for chunk in tqdm(chunks, desc="Transcribing"):
-        transcript_path = get_transcript_path(chunk.video_id, chunk.chunk_idx, settings.transcript_dir)
+        transcript_path = get_transcript_path(
+            chunk.video_id, chunk.chunk_idx, settings.transcript_dir
+        )
         if skip_existing and transcript_path.exists():
             logger.debug(f"Skipping existing transcript: {transcript_path.name}")
             continue
@@ -91,7 +94,9 @@ def process_single_video(video_path: Path, skip_existing: bool = True):
     text_embedder = TextEmbedder()
     transcripts = []
     for chunk in chunks:
-        transcript_path = get_transcript_path(chunk.video_id, chunk.chunk_idx, settings.transcript_dir)
+        transcript_path = get_transcript_path(
+            chunk.video_id, chunk.chunk_idx, settings.transcript_dir
+        )
         with open(transcript_path) as f:
             data = json.load(f)
             transcripts.append(data["full_text"])
@@ -111,8 +116,7 @@ def main():
 
     video_files = list(settings.video_dir.glob("*.*"))
     video_files = [
-        f for f in video_files
-        if f.suffix.lower() in [".mp4", ".avi", ".mkv", ".mov", ".webm"]
+        f for f in video_files if f.suffix.lower() in [".mp4", ".avi", ".mkv", ".mov", ".webm"]
     ]
 
     if not video_files:

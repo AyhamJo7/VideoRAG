@@ -2,6 +2,7 @@
 Configuration management for VideoRAG using Pydantic settings.
 Loads from environment variables and .env files.
 """
+
 from pathlib import Path
 from typing import Literal
 

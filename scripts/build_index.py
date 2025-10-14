@@ -10,12 +10,13 @@ from tqdm import tqdm
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
+from loguru import logger
+
 from videorag.config.settings import settings
 from videorag.index.milvus_client import MilvusClient
 from videorag.index.schema import ChunkDocument
 from videorag.utils.logging import setup_logging
 from videorag.utils.paths import get_embedding_path, get_transcript_path, get_video_id
-from loguru import logger
 
 
 def collect_documents_for_video(video_path: Path) -> list[ChunkDocument]:
@@ -105,8 +106,7 @@ def main():
     # Collect documents from all videos
     video_files = list(settings.video_dir.glob("*.*"))
     video_files = [
-        f for f in video_files
-        if f.suffix.lower() in [".mp4", ".avi", ".mkv", ".mov", ".webm"]
+        f for f in video_files if f.suffix.lower() in [".mp4", ".avi", ".mkv", ".mov", ".webm"]
     ]
 
     all_documents = []

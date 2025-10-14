@@ -1,4 +1,5 @@
 """Milvus collection schema definitions for VideoRAG."""
+
 from dataclasses import dataclass
 from typing import List
 

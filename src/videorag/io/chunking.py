@@ -1,4 +1,5 @@
 """Video chunking utilities for splitting videos into temporal segments."""
+
 import json
 from dataclasses import dataclass
 from pathlib import Path

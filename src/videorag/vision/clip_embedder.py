@@ -1,11 +1,12 @@
 """CLIP-based visual embeddings for keyframes."""
+
 from pathlib import Path
 from typing import List, Optional
 
 import numpy as np
 import torch
-from PIL import Image
 from loguru import logger
+from PIL import Image
 from transformers import CLIPModel, CLIPProcessor
 
 from videorag.config.settings import settings

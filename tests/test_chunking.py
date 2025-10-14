@@ -1,4 +1,5 @@
 """Tests for video chunking module."""
+
 import pytest
 
 from videorag.io.chunking import compute_chunk_times

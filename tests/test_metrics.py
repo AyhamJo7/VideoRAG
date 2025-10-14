@@ -1,5 +1,6 @@
 """Tests for evaluation metrics."""
-from videorag.eval.metrics import hit_at_k, precision_at_k, recall_at_k, mean_reciprocal_rank
+
+from videorag.eval.metrics import hit_at_k, mean_reciprocal_rank, precision_at_k, recall_at_k
 
 
 def test_hit_at_k():

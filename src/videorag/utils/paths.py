@@ -1,4 +1,5 @@
 """Path utilities for VideoRAG."""
+
 import hashlib
 from pathlib import Path
 

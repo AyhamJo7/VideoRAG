@@ -1,4 +1,5 @@
 """Logging utilities for VideoRAG."""
+
 import sys
 from pathlib import Path
 

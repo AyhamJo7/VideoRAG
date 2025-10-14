@@ -1,4 +1,5 @@
 """RAG pipeline for multimodal video retrieval and grounded answer generation."""
+
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 

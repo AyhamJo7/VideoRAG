@@ -1,4 +1,5 @@
 """Milvus client for VideoRAG index operations."""
+
 import json
 from typing import Dict, List, Optional
 

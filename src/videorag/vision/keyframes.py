@@ -1,4 +1,5 @@
 """Keyframe extraction from video chunks."""
+
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -76,8 +77,7 @@ def extract_keyframes_uniform(
     timestamps = np.linspace(0, chunk_duration, num_frames, endpoint=False)
 
     logger.info(
-        f"Extracting {num_frames} keyframes from chunk {chunk_idx} "
-        f"at {sample_rate} fps"
+        f"Extracting {num_frames} keyframes from chunk {chunk_idx} " f"at {sample_rate} fps"
     )
 
     keyframes = []

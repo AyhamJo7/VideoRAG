@@ -1,4 +1,5 @@
 """Text embeddings using sentence transformers for transcript retrieval."""
+
 from typing import List, Optional
 
 import numpy as np

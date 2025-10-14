@@ -1,4 +1,5 @@
 """Evaluation metrics for VideoRAG retrieval quality."""
+
 from typing import Dict, List, Set
 
 

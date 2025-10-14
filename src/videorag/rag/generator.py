@@ -1,4 +1,5 @@
 """LLM-based answer generation with grounding for VideoRAG."""
+
 from typing import Dict, List
 
 from loguru import logger

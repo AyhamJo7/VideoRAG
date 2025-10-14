@@ -1,4 +1,5 @@
 """Streamlit UI for VideoRAG system."""
+
 import os
 from pathlib import Path
 
@@ -73,7 +74,9 @@ def render_chunk_result(chunk: dict, idx: int):
             st.metric("Combined Score", f"{chunk['score']:.3f}")
             st.metric("CLIP Score", f"{chunk['clip_score']:.3f}")
             st.metric("Text Score", f"{chunk['text_score']:.3f}")
-            st.caption(f"Time: {format_time(chunk['start_time'])} - {format_time(chunk['end_time'])}")
+            st.caption(
+                f"Time: {format_time(chunk['start_time'])} - {format_time(chunk['end_time'])}"
+            )
             st.caption(f"Language: {chunk['language']}")
 
             # Display keyframe if available
@@ -95,9 +98,7 @@ def render_chunk_result(chunk: dict, idx: int):
 def main():
     """Main Streamlit app."""
     st.title("\ud83c\udfa5 VideoRAG: Multimodal Video Q&A")
-    st.markdown(
-        "Ask questions about your video collection and get timestamped, grounded answers."
-    )
+    st.markdown("Ask questions about your video collection and get timestamped, grounded answers.")
 
     # Initialize pipeline
     pipeline = initialize_pipeline()
