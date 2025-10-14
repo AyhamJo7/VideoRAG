@@ -18,10 +18,11 @@ def test_compute_chunk_times_basic():
 def test_compute_chunk_times_with_overlap():
     """Test chunking with overlap."""
     chunks = compute_chunk_times(video_duration=100.0, chunk_length=30.0, overlap=5.0)
-    assert len(chunks) == 5
+    assert len(chunks) == 4
     assert chunks[0] == (0.0, 30.0)
     assert chunks[1] == (25.0, 55.0)
     assert chunks[2] == (50.0, 80.0)
+    assert chunks[3] == (75.0, 100.0)
 
 
 def test_compute_chunk_times_short_video():
