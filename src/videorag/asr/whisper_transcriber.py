@@ -3,14 +3,11 @@
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional
 
-import torch
 import whisper
 from loguru import logger
 
 from videorag.config.settings import settings
-from videorag.utils.paths import get_transcript_path
 
 
 @dataclass
@@ -20,7 +17,7 @@ class TranscriptSegment:
     start: float
     end: float
     text: str
-    confidence: Optional[float] = None
+    confidence: float | None = None
 
     def to_dict(self) -> dict:
         """Convert to dictionary."""
@@ -48,9 +45,9 @@ class Transcript:
 
     video_id: str
     chunk_idx: int
-    segments: List[TranscriptSegment]
+    segments: list[TranscriptSegment]
     full_text: str
-    language: Optional[str] = None
+    language: str | None = None
 
     def to_dict(self) -> dict:
         """Convert to dictionary."""
@@ -79,8 +76,8 @@ class WhisperTranscriber:
 
     def __init__(
         self,
-        model_name: Optional[str] = None,
-        device: Optional[str] = None,
+        model_name: str | None = None,
+        device: str | None = None,
     ):
         """
         Initialize Whisper transcriber.
@@ -99,7 +96,7 @@ class WhisperTranscriber:
     def transcribe(
         self,
         audio_path: Path,
-        language: Optional[str] = None,
+        language: str | None = None,
         **kwargs,
     ) -> dict:
         """
@@ -140,7 +137,7 @@ class WhisperTranscriber:
         audio_path: Path,
         video_id: str,
         chunk_idx: int,
-        language: Optional[str] = None,
+        language: str | None = None,
     ) -> Transcript:
         """
         Transcribe audio and return structured Transcript object.

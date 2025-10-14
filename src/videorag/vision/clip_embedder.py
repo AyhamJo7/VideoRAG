@@ -1,7 +1,6 @@
 """CLIP-based visual embeddings for keyframes."""
 
 from pathlib import Path
-from typing import List, Optional
 
 import numpy as np
 import torch
@@ -17,8 +16,8 @@ class CLIPEmbedder:
 
     def __init__(
         self,
-        model_name: Optional[str] = None,
-        device: Optional[str] = None,
+        model_name: str | None = None,
+        device: str | None = None,
     ):
         """
         Initialize CLIP embedder.
@@ -64,7 +63,7 @@ class CLIPEmbedder:
             raise ValueError(f"Failed to embed image {image_path}: {e}")
 
     @torch.no_grad()
-    def embed_images_batch(self, image_paths: List[Path], batch_size: int = 32) -> np.ndarray:
+    def embed_images_batch(self, image_paths: list[Path], batch_size: int = 32) -> np.ndarray:
         """
         Generate embeddings for multiple images in batches.
 
@@ -130,7 +129,7 @@ class CLIPEmbedder:
         return embeddings.cpu().numpy().flatten()
 
     @torch.no_grad()
-    def embed_texts_batch(self, texts: List[str], batch_size: int = 32) -> np.ndarray:
+    def embed_texts_batch(self, texts: list[str], batch_size: int = 32) -> np.ndarray:
         """
         Generate embeddings for multiple text strings in batches.
 

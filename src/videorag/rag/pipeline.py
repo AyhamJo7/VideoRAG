@@ -1,7 +1,6 @@
 """RAG pipeline for multimodal video retrieval and grounded answer generation."""
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional
 
 from loguru import logger
 
@@ -15,7 +14,7 @@ from videorag.vision.clip_embedder import CLIPEmbedder
 class RetrievalResult:
     """Result from hybrid retrieval."""
 
-    chunks: List[Dict]
+    chunks: list[dict]
     query: str
     clip_query_used: bool
     text_query_used: bool
@@ -28,7 +27,7 @@ class VideoRAGPipeline:
         self,
         milvus_client: MilvusClient,
         text_embedder: TextEmbedder,
-        clip_embedder: Optional[CLIPEmbedder] = None,
+        clip_embedder: CLIPEmbedder | None = None,
     ):
         """
         Initialize VideoRAG pipeline.
@@ -45,7 +44,7 @@ class VideoRAGPipeline:
     def retrieve(
         self,
         query: str,
-        top_k: Optional[int] = None,
+        top_k: int | None = None,
         use_clip: bool = True,
         use_text: bool = True,
     ) -> RetrievalResult:
@@ -92,11 +91,11 @@ class VideoRAGPipeline:
     def query(
         self,
         query: str,
-        top_k: Optional[int] = None,
+        top_k: int | None = None,
         use_clip: bool = True,
         use_text: bool = True,
         generate_answer: bool = True,
-    ) -> Dict:
+    ) -> dict:
         """
         End-to-end query: retrieve chunks and optionally generate answer.
 

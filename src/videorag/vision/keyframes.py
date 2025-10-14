@@ -3,13 +3,12 @@
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List
 
 import numpy as np
 from loguru import logger
 
 from videorag.config.settings import settings
-from videorag.io.video import extract_frame_at_time, get_video_info, save_frame
+from videorag.io.video import extract_frame_at_time, save_frame
 from videorag.utils.paths import get_keyframe_path
 
 
@@ -52,8 +51,8 @@ def extract_keyframes_uniform(
     chunk_start_time: float,
     chunk_end_time: float,
     output_dir: Path,
-    sample_rate: Optional[float] = None,
-) -> List[Keyframe]:
+    sample_rate: float | None = None,
+) -> list[Keyframe]:
     """
     Extract keyframes at uniform intervals from a video chunk.
 
@@ -110,7 +109,7 @@ def extract_keyframes_uniform(
     return keyframes
 
 
-def save_keyframe_metadata(keyframes: List[Keyframe], output_path: Path) -> None:
+def save_keyframe_metadata(keyframes: list[Keyframe], output_path: Path) -> None:
     """
     Save keyframe metadata to JSON file.
 
@@ -125,7 +124,7 @@ def save_keyframe_metadata(keyframes: List[Keyframe], output_path: Path) -> None
     logger.info(f"Saved keyframe metadata to {output_path}")
 
 
-def load_keyframe_metadata(metadata_path: Path) -> List[Keyframe]:
+def load_keyframe_metadata(metadata_path: Path) -> list[Keyframe]:
     """
     Load keyframe metadata from JSON file.
 

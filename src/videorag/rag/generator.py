@@ -1,13 +1,11 @@
 """LLM-based answer generation with grounding for VideoRAG."""
 
-from typing import Dict, List
-
 from loguru import logger
 
 from videorag.config.settings import settings
 
 
-def build_context(chunks: List[Dict]) -> str:
+def build_context(chunks: list[dict]) -> str:
     """
     Build context string from retrieved chunks.
 
@@ -125,7 +123,7 @@ def generate_with_anthropic(prompt: str) -> str:
         raise
 
 
-def generate_grounded_answer(query: str, chunks: List[Dict]) -> str:
+def generate_grounded_answer(query: str, chunks: list[dict]) -> str:
     """
     Generate grounded answer from query and retrieved chunks.
 

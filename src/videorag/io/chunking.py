@@ -3,13 +3,12 @@
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List
 
 import ffmpeg
 from loguru import logger
 
 from videorag.config.settings import settings
-from videorag.io.video import VideoInfo, get_video_info
+from videorag.io.video import get_video_info
 from videorag.utils.paths import get_chunk_path
 
 
@@ -55,7 +54,7 @@ def compute_chunk_times(
     video_duration: float,
     chunk_length: float,
     overlap: float,
-) -> List[tuple[float, float]]:
+) -> list[tuple[float, float]]:
     """
     Compute start and end times for overlapping chunks.
 
@@ -92,9 +91,9 @@ def compute_chunk_times(
 def chunk_video(
     video_path: Path,
     output_dir: Path,
-    chunk_length: Optional[float] = None,
-    overlap: Optional[float] = None,
-) -> List[VideoChunk]:
+    chunk_length: float | None = None,
+    overlap: float | None = None,
+) -> list[VideoChunk]:
     """
     Split a video into temporal chunks using ffmpeg.
 
@@ -162,7 +161,7 @@ def chunk_video(
     return chunks
 
 
-def save_chunk_metadata(chunks: List[VideoChunk], output_path: Path) -> None:
+def save_chunk_metadata(chunks: list[VideoChunk], output_path: Path) -> None:
     """
     Save chunk metadata to JSON file.
 
@@ -177,7 +176,7 @@ def save_chunk_metadata(chunks: List[VideoChunk], output_path: Path) -> None:
     logger.info(f"Saved chunk metadata to {output_path}")
 
 
-def load_chunk_metadata(metadata_path: Path) -> List[VideoChunk]:
+def load_chunk_metadata(metadata_path: Path) -> list[VideoChunk]:
     """
     Load chunk metadata from JSON file.
 

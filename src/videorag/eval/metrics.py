@@ -1,9 +1,7 @@
 """Evaluation metrics for VideoRAG retrieval quality."""
 
-from typing import Dict, List, Set
 
-
-def hit_at_k(retrieved_ids: List[str], relevant_ids: Set[str], k: int) -> float:
+def hit_at_k(retrieved_ids: list[str], relevant_ids: set[str], k: int) -> float:
     """
     Compute Hit@K: whether any relevant item appears in top-k.
 
@@ -19,7 +17,7 @@ def hit_at_k(retrieved_ids: List[str], relevant_ids: Set[str], k: int) -> float:
     return 1.0 if len(top_k & relevant_ids) > 0 else 0.0
 
 
-def precision_at_k(retrieved_ids: List[str], relevant_ids: Set[str], k: int) -> float:
+def precision_at_k(retrieved_ids: list[str], relevant_ids: set[str], k: int) -> float:
     """
     Compute Precision@K: fraction of top-k that are relevant.
 
@@ -38,7 +36,7 @@ def precision_at_k(retrieved_ids: List[str], relevant_ids: Set[str], k: int) -> 
     return num_relevant / k
 
 
-def recall_at_k(retrieved_ids: List[str], relevant_ids: Set[str], k: int) -> float:
+def recall_at_k(retrieved_ids: list[str], relevant_ids: set[str], k: int) -> float:
     """
     Compute Recall@K: fraction of relevant items in top-k.
 
@@ -57,7 +55,7 @@ def recall_at_k(retrieved_ids: List[str], relevant_ids: Set[str], k: int) -> flo
     return num_retrieved_relevant / len(relevant_ids)
 
 
-def mean_reciprocal_rank(retrieved_ids: List[str], relevant_ids: Set[str]) -> float:
+def mean_reciprocal_rank(retrieved_ids: list[str], relevant_ids: set[str]) -> float:
     """
     Compute MRR: reciprocal rank of first relevant item.
 
@@ -75,10 +73,10 @@ def mean_reciprocal_rank(retrieved_ids: List[str], relevant_ids: Set[str]) -> fl
 
 
 def evaluate_query(
-    retrieved_ids: List[str],
-    relevant_ids: Set[str],
-    k_values: List[int] = [1, 3, 5, 10],
-) -> Dict[str, float]:
+    retrieved_ids: list[str],
+    relevant_ids: set[str],
+    k_values: list[int] = [1, 3, 5, 10],
+) -> dict[str, float]:
     """
     Compute all metrics for a single query.
 

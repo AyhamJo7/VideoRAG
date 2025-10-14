@@ -1,9 +1,6 @@
 """Text embeddings using sentence transformers for transcript retrieval."""
 
-from typing import List, Optional
-
 import numpy as np
-import torch
 from loguru import logger
 from sentence_transformers import SentenceTransformer
 
@@ -15,8 +12,8 @@ class TextEmbedder:
 
     def __init__(
         self,
-        model_name: Optional[str] = None,
-        device: Optional[str] = None,
+        model_name: str | None = None,
+        device: str | None = None,
     ):
         """
         Initialize text embedder.
@@ -53,7 +50,7 @@ class TextEmbedder:
 
     def embed_batch(
         self,
-        texts: List[str],
+        texts: list[str],
         batch_size: int = 32,
         normalize: bool = True,
     ) -> np.ndarray:

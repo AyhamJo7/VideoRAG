@@ -1,7 +1,6 @@
 """Milvus client for VideoRAG index operations."""
 
 import json
-from typing import Dict, List, Optional
 
 from loguru import logger
 from pymilvus import Collection, connections, utility
@@ -20,9 +19,9 @@ class MilvusClient:
 
     def __init__(
         self,
-        host: Optional[str] = None,
-        port: Optional[int] = None,
-        collection_name: Optional[str] = None,
+        host: str | None = None,
+        port: int | None = None,
+        collection_name: str | None = None,
     ):
         """
         Initialize Milvus client.
@@ -35,7 +34,7 @@ class MilvusClient:
         self.host = host or settings.milvus_host
         self.port = port or settings.milvus_port
         self.collection_name = collection_name or settings.collection_name
-        self.collection: Optional[Collection] = None
+        self.collection: Collection | None = None
 
         self._connect()
 
@@ -117,7 +116,7 @@ class MilvusClient:
         self.collection.load()
         logger.info(f"Collection {self.collection_name} loaded into memory")
 
-    def insert(self, documents: List[ChunkDocument]) -> List[str]:
+    def insert(self, documents: list[ChunkDocument]) -> list[str]:
         """
         Insert documents into collection.
 
@@ -161,12 +160,12 @@ class MilvusClient:
 
     def search_hybrid(
         self,
-        clip_query: Optional[List[float]] = None,
-        text_query: Optional[List[float]] = None,
-        top_k: Optional[int] = None,
-        clip_weight: Optional[float] = None,
-        text_weight: Optional[float] = None,
-    ) -> List[Dict]:
+        clip_query: list[float] | None = None,
+        text_query: list[float] | None = None,
+        top_k: int | None = None,
+        clip_weight: float | None = None,
+        text_weight: float | None = None,
+    ) -> list[dict]:
         """
         Perform hybrid search across CLIP and text embeddings.
 
@@ -203,7 +202,7 @@ class MilvusClient:
             "num_keyframes",
         ]
 
-        results_map: Dict[str, Dict] = {}
+        results_map: dict[str, dict] = {}
 
         # Search CLIP embeddings
         if clip_query is not None:

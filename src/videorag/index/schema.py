@@ -1,7 +1,6 @@
 """Milvus collection schema definitions for VideoRAG."""
 
 from dataclasses import dataclass
-from typing import List
 
 from pymilvus import CollectionSchema, DataType, FieldSchema
 
@@ -25,11 +24,11 @@ class ChunkDocument:
     language: str
 
     # Embeddings
-    clip_embedding: List[float]  # Visual embedding (averaged keyframes)
-    text_embedding: List[float]  # Transcript embedding
+    clip_embedding: list[float]  # Visual embedding (averaged keyframes)
+    text_embedding: list[float]  # Transcript embedding
 
     # Optional metadata
-    keyframe_paths: List[str]  # JSON-encoded list of keyframe paths
+    keyframe_paths: list[str]  # JSON-encoded list of keyframe paths
     num_keyframes: int
 
 

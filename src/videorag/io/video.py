@@ -1,15 +1,11 @@
 """Video I/O utilities for loading and processing video files."""
 
-import json
 from pathlib import Path
-from typing import Optional
 
 import cv2
-import ffmpeg
 import numpy as np
 from loguru import logger
 
-from videorag.config.settings import settings
 from videorag.utils.paths import get_video_id
 
 
@@ -101,7 +97,7 @@ def get_video_info(video_path: Path) -> VideoInfo:
     )
 
 
-def extract_frame_at_time(video_path: Path, timestamp: float) -> Optional[np.ndarray]:
+def extract_frame_at_time(video_path: Path, timestamp: float) -> np.ndarray | None:
     """
     Extract a single frame at a specific timestamp.
 
