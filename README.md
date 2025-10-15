@@ -3,6 +3,9 @@
 [![CI](https://github.com/AyhamJo7/VideoRAG/actions/workflows/ci.yaml/badge.svg)](https://github.com/AyhamJo7/VideoRAG/actions)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+  <img src="data/VideoRAG.png" alt="VideoRAG Logo" width="400"/>
+</p>
 
 **VideoRAG** is a production-grade system for multimodal retrieval-augmented generation over video collections. Ask natural language questions about your videos and get timestamped, grounded answers with source clips.
 
